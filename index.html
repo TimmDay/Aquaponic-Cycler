@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complete Target Tool</title>
+    <link rel="stylesheet" href="./src/styles/app.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.2/css/tabulator.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+<p class="test"> html connected </p>
+
+<div class="container">
+    <canvas id="myChart"></canvas>
+
+    <div id="example-table"></div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.2/js/tabulator.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./src/lib/moment.min.js"></script>
+
+<script src="src/scripts/global-data.js"></script> <!--must be before the other files that use it-->
+<script src="src/scripts/table.js"></script>
+<script src="./src/scripts/line-chart.js"></script>
+
+</body>
+</html>
