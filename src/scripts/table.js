@@ -105,54 +105,54 @@ $("#example-table").tabulator({
 
 let data_entries = [
     {
-        id:0, date: global_data.sys1.dates[0],
-        pH: global_data.sys1.pH[0], ammonia: global_data.sys1.ammonia[0],
-        nitrite: global_data.sys1.nitrite[0], nitrate: global_data.sys1.nitrate[0]
+        id:0, date: global_data_arrays.sys1.dates[0],
+        pH: global_data_arrays.sys1.pH[0], ammonia: global_data_arrays.sys1.ammonia[0],
+        nitrite: global_data_arrays.sys1.nitrite[0], nitrate: global_data_arrays.sys1.nitrate[0]
     },
     {
-        id:1, date: global_data.sys1.dates[1],
-        pH: global_data.sys1.pH[1], ammonia: global_data.sys1.ammonia[1],
-        nitrite: global_data.sys1.nitrite[1], nitrate: global_data.sys1.nitrate[1]
+        id:1, date: global_data_arrays.sys1.dates[1],
+        pH: global_data_arrays.sys1.pH[1], ammonia: global_data_arrays.sys1.ammonia[1],
+        nitrite: global_data_arrays.sys1.nitrite[1], nitrate: global_data_arrays.sys1.nitrate[1]
     },
     {
-        id:2, date: global_data.sys1.dates[2],
-        pH: global_data.sys1.pH[2], ammonia: global_data.sys1.ammonia[2],
-        nitrite: global_data.sys1.nitrite[2], nitrate: global_data.sys1.nitrate[2]
+        id:2, date: global_data_arrays.sys1.dates[2],
+        pH: global_data_arrays.sys1.pH[2], ammonia: global_data_arrays.sys1.ammonia[2],
+        nitrite: global_data_arrays.sys1.nitrite[2], nitrate: global_data_arrays.sys1.nitrate[2]
     },
     {
-        id:3, date: global_data.sys1.dates[3],
-        pH: global_data.sys1.pH[3], ammonia: global_data.sys1.ammonia[3],
-        nitrite: global_data.sys1.nitrite[3], nitrate: global_data.sys1.nitrate[3]
+        id:3, date: global_data_arrays.sys1.dates[3],
+        pH: global_data_arrays.sys1.pH[3], ammonia: global_data_arrays.sys1.ammonia[3],
+        nitrite: global_data_arrays.sys1.nitrite[3], nitrate: global_data_arrays.sys1.nitrate[3]
     },
     {
-        id:4, date: global_data.sys1.dates[4],
-        pH: global_data.sys1.pH[4], ammonia: global_data.sys1.ammonia[4],
-        nitrite: global_data.sys1.nitrite[4], nitrate: global_data.sys1.nitrate[4]
+        id:4, date: global_data_arrays.sys1.dates[4],
+        pH: global_data_arrays.sys1.pH[4], ammonia: global_data_arrays.sys1.ammonia[4],
+        nitrite: global_data_arrays.sys1.nitrite[4], nitrate: global_data_arrays.sys1.nitrate[4]
     },
     {
-        id:5, date: global_data.sys1.dates[5],
-        pH: global_data.sys1.pH[5], ammonia: global_data.sys1.ammonia[5],
-        nitrite: global_data.sys1.nitrite[5], nitrate: global_data.sys1.nitrate[5]
+        id:5, date: global_data_arrays.sys1.dates[5],
+        pH: global_data_arrays.sys1.pH[5], ammonia: global_data_arrays.sys1.ammonia[5],
+        nitrite: global_data_arrays.sys1.nitrite[5], nitrate: global_data_arrays.sys1.nitrate[5]
     },
     {
-        id:6, date: global_data.sys1.dates[6],
-        pH: global_data.sys1.pH[6], ammonia: global_data.sys1.ammonia[6],
-        nitrite: global_data.sys1.nitrite[6], nitrate: global_data.sys1.nitrate[6]
+        id:6, date: global_data_arrays.sys1.dates[6],
+        pH: global_data_arrays.sys1.pH[6], ammonia: global_data_arrays.sys1.ammonia[6],
+        nitrite: global_data_arrays.sys1.nitrite[6], nitrate: global_data_arrays.sys1.nitrate[6]
     },
     {
-        id:7, date: global_data.sys1.dates[7],
-        pH: global_data.sys1.pH[7], ammonia: global_data.sys1.ammonia[7],
-        nitrite: global_data.sys1.nitrite[7], nitrate: global_data.sys1.nitrate[7]
+        id:7, date: global_data_arrays.sys1.dates[7],
+        pH: global_data_arrays.sys1.pH[7], ammonia: global_data_arrays.sys1.ammonia[7],
+        nitrite: global_data_arrays.sys1.nitrite[7], nitrate: global_data_arrays.sys1.nitrate[7]
     },
     {
-        id:8, date: global_data.sys1.dates[8],
-        pH: global_data.sys1.pH[8], ammonia: global_data.sys1.ammonia[8],
-        nitrite: global_data.sys1.nitrite[8], nitrate: global_data.sys1.nitrate[8]
+        id:8, date: global_data_arrays.sys1.dates[8],
+        pH: global_data_arrays.sys1.pH[8], ammonia: global_data_arrays.sys1.ammonia[8],
+        nitrite: global_data_arrays.sys1.nitrite[8], nitrate: global_data_arrays.sys1.nitrate[8]
     },
     {
-        id:9, date: global_data.sys1.dates[9],
-        pH: global_data.sys1.pH[9], ammonia: global_data.sys1.ammonia[9],
-        nitrite: global_data.sys1.nitrite[9], nitrate: global_data.sys1.nitrate[9]
+        id:9, date: global_data_arrays.sys1.dates[9],
+        pH: global_data_arrays.sys1.pH[9], ammonia: global_data_arrays.sys1.ammonia[9],
+        nitrite: global_data_arrays.sys1.nitrite[9], nitrate: global_data_arrays.sys1.nitrate[9]
     },
 ];
 

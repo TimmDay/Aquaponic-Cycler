@@ -17,7 +17,7 @@ const setUpChart = () => {
     chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: global_data.sys1.dates,
+            labels: global_data_arrays.sys1.dates,
             datasets: []
         },
         options: {
@@ -92,7 +92,7 @@ const populateChart = () => {
     chart.data.datasets = [{
         type: 'line',
         label: 'pH',
-        data: global_data.sys1.pH,
+        data: global_data_arrays.sys1.pH,
         yAxisID: 'C',
         fill: false,
         borderColor: colors.pH,
@@ -106,7 +106,7 @@ const populateChart = () => {
         type: 'line',
         label: 'ammonia',
         yAxisID: 'A',
-        data: global_data.sys1.ammonia,
+        data: global_data_arrays.sys1.ammonia,
         fill: true,
         fillOpacity: 0.3,
         borderColor: colors.ammonia,
@@ -120,7 +120,7 @@ const populateChart = () => {
         type: 'line',
         label: 'nitrite',
         yAxisID: 'A',
-        data: global_data.sys1.nitrite,
+        data: global_data_arrays.sys1.nitrite,
         fill: true,
         fillOpacity: 0.3,
         borderColor: colors.nitrite,
@@ -134,7 +134,7 @@ const populateChart = () => {
         type: 'line',
         label: 'nitrate',
         yAxisID: 'B',
-        data: global_data.sys1.nitrate,
+        data: global_data_arrays.sys1.nitrate,
         fill: true,
         fillOpacity: 0.3,
         borderColor: colors.nitrate,

@@ -20,16 +20,24 @@ CHART
 - split legend to left and right
 - hook the table up to the data
 - user enters data into the table, it updates the global object, the graph adjusts
+- make the data points on xaxis sprad according to the time they were taken (ie 3 points taken on one day should not take 3 days worth of width)
 
 TABLE
 - validation. only numbers for data columns
 - validation. make date auto populate, otherwise stick to same format
 - show data in reverse order such that most recent entry is first
 - new entries are added to the top
+- remove typo/outlier entries
+
+NEXT THING editing data, and then updating the global data object
+http://tabulator.info/docs/3.1?#manipulating-data
 
 -BUG can type 'e' in number cells
 
 - button: new entry. 
+- button new entry: added something note. thing, quantity added, time, date
+
+
 
 ## DOCS
 [moment js](https://momentjs.com/docs/#/displaying/)
