@@ -58,7 +58,7 @@ const setUpChart = () => {
                     },
                     ticks: {
                         beginAtZero:true,
-                        max: 20
+                        max: 12
                     },
                     gridLines: {
                         display: false
@@ -78,7 +78,7 @@ const setUpChart = () => {
             },
             tooltips:{
                 mode: 'x',
-                bodyFontSize: 10,
+                bodyFontSize: 26,
                 displayColors: false,
                 position: 'nearest'
             }

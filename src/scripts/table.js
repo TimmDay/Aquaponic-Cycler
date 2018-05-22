@@ -39,9 +39,9 @@ const dateEditor = (cell, onRendered, success, cancel) => {
 };
 
 //create autocomplete editor
-var autocompEditor = function(cell, onRendered, success, cancel){
+const autocompEditor = (cell, onRendered, success, cancel) => {
     //create and style input
-    var input = $("<input type='text'/>");
+    let input = $("<input type='text'/>");
 
     //setup jquery autocomplete
     input.autocomplete({
@@ -56,8 +56,10 @@ var autocompEditor = function(cell, onRendered, success, cancel){
         .val(cell.getValue());
 
     onRendered(function(){
+        console.log('rendered');
         input.focus();
         input.css("height","100%");
+
     });
 
     //submit new value on blur
@@ -72,10 +74,12 @@ var autocompEditor = function(cell, onRendered, success, cancel){
     //submit new value on enter
     input.on("keydown", function(e){
         if(e.keyCode == 13){
+            input.css("color","red");
             success(input.val());
         }
 
         if(e.keyCode == 27){
+            input.css("color","red");
             cancel();
         }
     });
@@ -84,14 +88,18 @@ var autocompEditor = function(cell, onRendered, success, cancel){
 
 //Build Tabulator
 $("#example-table").tabulator({
+    layout:"fitColumns",
     height:"311px",
     columns:[
-        {title:"Date", field:"date", align:"center", sorter:"date",  editor:dateEditor},
-        {title:"pH", field:"pH", formatter:"number", align:"center", width:130, editor:autocompEditor},
-        {title:"Ammonia", field:"ammonia", formatter:"number", align:"center",   editor:true, editorParams: {max: 20}},
-        {title:"Nitrite", field:"nitrite", formatter:"number",  align:"center", editor:true},
-        {title:"Nitrate", field:"nitrate",  formatter:"number", align:"center", editor:true},
+        {title:"Date", field:"date", align:"center", sorter:false,  editor:dateEditor},
+        {title:"pH", field:"pH", align:"center", width:130, editor:autocompEditor},
+        {title:"Ammonia", field:"ammonia", align:"center",   editor:true, editorParams: {max: 20}},
+        {title:"Nitrite", field:"nitrite", align:"center", editor:true},
+        {title:"Nitrate", field:"nitrate", align:"center", editor:true},
     ],
+    cellEdited:function(cell){
+        console.log('cell edited');
+    },
 });
 
 
@@ -150,4 +158,12 @@ let data_entries = [
 
 // load sample data into the table
 $("#example-table").tabulator("setData", data_entries);
+
+document.getElementById('btn__csv').addEventListener('click', () => {
+    $("#example-table").tabulator("download", "csv", "data.csv", {delimiter:"."});
+});
+
+document.getElementById('btn__xlsv').addEventListener('click', () => {
+    $("#example-table").tabulator("download", "xlsx", "data.xlsx", {sheetName:"MyData"});
+});
 

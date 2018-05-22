@@ -6,3 +6,7 @@
     width: 70%;
     margin: 0 auto;
 }
+
+.tabulator .tabulator-col-title{
+    text-align:center;
+}

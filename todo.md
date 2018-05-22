@@ -27,6 +27,8 @@ TABLE
 - show data in reverse order such that most recent entry is first
 - new entries are added to the top
 
+-BUG can type 'e' in number cells
+
 - button: new entry. 
 
 ## DOCS
