@@ -151,3 +151,5 @@ const populateChart = () => {
 setUpChart();
 populateChart();
 
+
+

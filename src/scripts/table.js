@@ -82,8 +82,8 @@ const autocompEditor = (cell, onRendered, success, cancel) => {
             input.css("color","red");
             cancel();
         }
+        return input;
     });
-    return input;
 };
 
 //Build Tabulator
