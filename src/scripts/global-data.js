@@ -1,19 +1,18 @@
 
 // import moment from './../lib/moment.min.js';
-console.log(moment().format('MMM Do YY'));
-console.log(moment().format('HH:mm:ss a'));
+// console.log(moment().format('MMM Do YY'));
+// console.log(moment().format('HH:mm:ss a'));
 
 
 // MODEL
-
-let url = '/src/scripts/dummy-data.js';
-let rawData = null;  // a place to dump the returned data from getJSON
+let url = './src/scripts/dummy-data.json';
 
 // this represents the converted local memory version of what we get from db
 // id from entries corresponds to array index
 // array format is required by chart.js lib
 const global_data_arrays = {
     sys1: {
+        id: [],
         dates: [],
         times: [],
         pH: [],
@@ -28,43 +27,29 @@ const global_data_arrays = {
 };
 
 
+
+
+
+
+
 // FUNCTIONS
 
-const retrieveJSON = () => {
-    let request = new XMLHttpRequest();
-    console.log(request);
-    request.open('GET', url, true);
-    request.onload = () => {
-        console.log(request.status);
-        if (request.status >= 200 && request.status < 400) {
-            // Success!
-            console.log('json success');
-            rawData = JSON.parse(request.responseText);
-        } else {
-            // We reached our target server, but it returned an error
-            console.log(`reached server, but error returning JSON. status: ${request.status}`)
-
-        }
-    };
-    request.onerror = function() {
-        // There was a connection error of some sort
-    };
-    request.send();
-};
-
-
-
-
-
-const populateChartData = ( {dates, times, pH, ammonia, nitrite, nitrate} = global_data_arrays.sys1) => {
+// destructure the arg for destination (global arr. whatever sys)
+const populateChartData = ( json, {id, dates, times, pH, ammonia, nitrite, nitrate} = sys_input_destination) => {
     // global_data_entries.forEach((entry) => {
-    rawData.forEach((entry) => {
-        // retrieve timestamp
+
+    json.forEach((entry) => {
+        // console.log('HI!');
+        // console.log(entry);
+
+        // retrieve timestamp from data, convert to date for display
         // unix -> moment obj -> formatted date/time
         const moment_obj = moment.unix(entry.date);
         const date = moment_obj.format('MMM Do YY');
         const time = moment_obj.format('HH:mm:ss a');
 
+        // console.log(entry.date);
+        id.push(entry.id);
         dates[entry.id] = date;
         times[entry.id] = time;
         pH[entry.id] = entry.pH;
@@ -74,21 +59,42 @@ const populateChartData = ( {dates, times, pH, ammonia, nitrite, nitrate} = glob
     })
 };
 
-// promise
-//when
 
-//then
+// method is GET
+const makeRequest = (method, url) => {
+    return new Promise((resolve,reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                console.log(typeof xhr.response);
+                resolve(xhr.response)
+            } else {
+                reject({
+                    status: xhr.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = () => {
+            reject({
+                status: xhr.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
+};
 
+makeRequest('GET',url)
+    .then((datums) => {
+        // console.log(datums);
+        json = JSON.parse(datums);
+        populateChartData(json,  global_data_arrays.sys1);
+    })
+    .catch((err) => {
+        console.error('Augh, there was an error!', err.statusText);
+    });
 
-let promise1 = new Promise((resolve, reject) => {
-    retrieveJSON();
-    resolve('Success!');
-});
-
-promise1.then(function(value) {
-    populateChartData();
-    console.log(value);
-    // expected output: "Success!"
-});
 
 console.log(global_data_arrays);
