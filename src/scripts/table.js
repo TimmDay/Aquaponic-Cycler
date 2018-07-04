@@ -156,6 +156,7 @@ let data_entries = [
     },
 ];
 
+
 // load sample data into the table
 $("#example-table").tabulator("setData", data_entries);
 

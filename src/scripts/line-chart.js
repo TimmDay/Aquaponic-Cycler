@@ -11,13 +11,31 @@ const colors = {
     nitrate: '#ff0019',
     nitrate_light: 'rgba(247, 123, 135,0.3)'
 };
+
+const revData = {
+    dates: [],
+    pH: [],
+    amm: [],
+    nitrite: [],
+    nitrate: []
+};
+const init_revDataForCharting = () => {
+    revData.dates = global_data_arrays.sys1.dates.slice().reverse();
+    revData.pH = global_data_arrays.sys1.pH.slice().reverse();
+    revData.amm = global_data_arrays.sys1.ammonia.slice().reverse();
+    revData.nitrite = global_data_arrays.sys1.nitrite.slice().reverse();
+    revData.nitrate = global_data_arrays.sys1.nitrate.slice().reverse();
+};
+
+console.log(revData.dates);
+
 let chart;
 const setUpChart = () => {
     let ctx = document.getElementById("myChart").getContext('2d');
     chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: global_data_arrays.sys1.dates,
+            labels: revData.dates,
             datasets: []
         },
         options: {
@@ -91,7 +109,7 @@ const populateChart = () => {
     chart.data.datasets = [{
         type: 'line',
         label: 'pH',
-        data: global_data_arrays.sys1.pH,
+        data: revData.pH,
         yAxisID: 'C',
         fill: false,
         borderColor: colors.pH,
@@ -105,7 +123,7 @@ const populateChart = () => {
         type: 'line',
         label: 'ammonia',
         yAxisID: 'A',
-        data: global_data_arrays.sys1.ammonia,
+        data: revData.amm,
         fill: true,
         fillOpacity: 0.3,
         borderColor: colors.ammonia,
@@ -119,7 +137,7 @@ const populateChart = () => {
         type: 'line',
         label: 'nitrite',
         yAxisID: 'A',
-        data: global_data_arrays.sys1.nitrite,
+        data: revData.nitrite,
         fill: true,
         fillOpacity: 0.3,
         borderColor: colors.nitrite,
@@ -133,7 +151,7 @@ const populateChart = () => {
         type: 'line',
         label: 'nitrate',
         yAxisID: 'B',
-        data: global_data_arrays.sys1.nitrate,
+        data: revData.nitrate,
         fill: true,
         fillOpacity: 0.3,
         borderColor: colors.nitrate,

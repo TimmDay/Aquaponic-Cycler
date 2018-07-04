@@ -31,19 +31,13 @@ const global_data_arrays = {
 
 // destructure the arg for destination (global arr. whatever sys)
 const populateChartData = ( json, {id, dates, times, pH, ammonia, nitrite, nitrate, notes} = sys_input_destination ) => {
-    // global_data_entries.forEach((entry) => {
-
     json.forEach((entry) => {
-        // console.log('HI!');
-        // console.log(entry);
-
         // retrieve timestamp from data, convert to date for display
         // unix -> moment obj -> formatted date/time
         const moment_obj = moment.unix(entry.date);
         const date = moment_obj.format('MMM Do YY');
         const time = moment_obj.format('HH:mm:ss a');
 
-        // console.log(entry.date);
         id.push(entry.id);
         dates.push(date);
         times.push(time);
@@ -57,7 +51,8 @@ const populateChartData = ( json, {id, dates, times, pH, ammonia, nitrite, nitra
         } else {
             notes.push("");
         }
-    })
+    });
+
 };
 
 
@@ -89,13 +84,15 @@ const makeRequest = (method, url) => {
 
 makeRequest('GET',url)
     .then((datums) => {
-        // console.log(datums);
         json = JSON.parse(datums);
         populateChartData(json,  global_data_arrays.sys1);
 
     }).then(() => {
+        init_revDataForCharting(); //reverse data for the chart setup
         setUpChart();
         populateChart();
+
+    }).then(() => {
         generateTableHtml();
     })
     .catch((err) => {
