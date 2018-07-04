@@ -2,7 +2,7 @@
 // generates a table that represents the last 45 data entries (stored in global_data_entries)
 const column_headers = ['Date', 'Time', 'pH', 'Ammonia', 'Nitrite', 'Nitrate', 'Notes','Edit']; //8
 
-const generateTableHtml = (global_data_entries) => {
+const generateTableHtml = () => {
 
     // make sure to remove the old table html to make space for the updated one
     const oldTable = document.getElementById('table_container');
@@ -15,7 +15,7 @@ const generateTableHtml = (global_data_entries) => {
 
     document.getElementById('table_container').appendChild(updated_table); //put it in html
 
-    const header = document.createElement('tr');
+    const header = document.createElement('thead');
     updated_table.appendChild(header);
 
     // generate table headers
@@ -26,15 +26,70 @@ const generateTableHtml = (global_data_entries) => {
         header.appendChild(title);
     });
 
-    // populate table data from existing sources
-    // db call
-    global_data_entries.forEach((entry) => {
+    const body = document.createElement('tbody');
+    updated_table.appendChild(body);
+
+
+    // async. make data populated before calling. call in promise within global-data.ja
+    // console.log(global_data_arrays.sys1.id);
+
+    // global_data_arrays.sys1.id.push("HIIIIIIII");
+    // global_data_arrays.sys1.id.push("aergaerg");
+    // console.log(global_data_arrays.sys1.id);
+
+    global_data_arrays.sys1.id.forEach((entry, idx) => {
+        // console.log(entry);
+
         // validate entry somehow
         // create append row
+        const row = document.createElement('tr');
+        row.setAttribute('class', 'table-row');
+        body.appendChild(row);
+
+        const date = document.createElement('td');
+        date.setAttribute('class', 'table-data');
+        date.textContent = global_data_arrays.sys1.dates[idx];
+        row.appendChild(date);
+
+        const time = document.createElement('td');
+        time.setAttribute('class', 'table-data');
+        time.textContent = global_data_arrays.sys1.times[idx];
+        row.appendChild(time);
+
+        const pH = document.createElement('td');
+        pH.setAttribute('class', 'table-data');
+        pH.textContent = global_data_arrays.sys1.pH[idx];
+        row.appendChild(pH);
+
+        const amm = document.createElement('td');
+        amm.setAttribute('class', 'table-data');
+        amm.textContent = global_data_arrays.sys1.ammonia[idx];
+        row.appendChild(amm);
+
+        const nitrite = document.createElement('td');
+        nitrite.setAttribute('class', 'table-data');
+        nitrite.textContent = global_data_arrays.sys1.nitrite[idx];
+        row.appendChild(nitrite);
+
+        const nitrate = document.createElement('td');
+        nitrate.setAttribute('class', 'table-data');
+        nitrate.textContent = global_data_arrays.sys1.nitrate[idx];
+        row.appendChild(nitrate);
+
+        const note = document.createElement('td');
+        note.setAttribute('class', 'table-data');
+        note.textContent = global_data_arrays.sys1.notes[idx];
+        row.appendChild(note);
+
     });
 };
 
-generateTableHtml(global_data_entries);
+
+// file called in main(global-data)
+
+
+
+
 
 //         const row = document.createElement('div'); // create div to hold the row
 //         row.setAttribute('class','flex-container chart-container');

@@ -27,15 +27,10 @@ const global_data_arrays = {
 };
 
 
-
-
-
-
-
 // FUNCTIONS
 
 // destructure the arg for destination (global arr. whatever sys)
-const populateChartData = ( json, {id, dates, times, pH, ammonia, nitrite, nitrate} = sys_input_destination) => {
+const populateChartData = ( json, {id, dates, times, pH, ammonia, nitrite, nitrate, notes} = sys_input_destination ) => {
     // global_data_entries.forEach((entry) => {
 
     json.forEach((entry) => {
@@ -50,12 +45,18 @@ const populateChartData = ( json, {id, dates, times, pH, ammonia, nitrite, nitra
 
         // console.log(entry.date);
         id.push(entry.id);
-        dates[entry.id] = date;
-        times[entry.id] = time;
-        pH[entry.id] = entry.pH;
-        ammonia[entry.id] = entry.ammonia;
-        nitrite[entry.id] = entry.nitrite;
-        nitrate[entry.id] = entry.nitrate;
+        dates.push(date);
+        times.push(time);
+        pH.push(entry.pH);
+        ammonia.push(entry.ammonia);
+        nitrite.push(entry.nitrite);
+        nitrate.push(entry.nitrate);
+
+        if(entry.note) {
+            notes.push(entry.note)
+        } else {
+            notes.push("");
+        }
     })
 };
 
@@ -67,7 +68,7 @@ const makeRequest = (method, url) => {
         xhr.open(method, url);
         xhr.onload = () => {
             if (xhr.status === 200) {
-                console.log(typeof xhr.response);
+                // console.log(typeof xhr.response);
                 resolve(xhr.response)
             } else {
                 reject({
@@ -91,6 +92,11 @@ makeRequest('GET',url)
         // console.log(datums);
         json = JSON.parse(datums);
         populateChartData(json,  global_data_arrays.sys1);
+
+    }).then(() => {
+        setUpChart();
+        populateChart();
+        generateTableHtml();
     })
     .catch((err) => {
         console.error('Augh, there was an error!', err.statusText);
@@ -98,3 +104,6 @@ makeRequest('GET',url)
 
 
 console.log(global_data_arrays);
+
+// useful docs: promise/request chaining
+// https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr/30008115#30008115

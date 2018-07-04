@@ -13,7 +13,8 @@
     "pH": 7.2,
     "ammonia": 0,
     "nitrite": 0.5,
-    "nitrate": 40
+    "nitrate": 40,
+    "note": "added 4 gold fish to tank"
   },
   {
     "id":8,
@@ -85,6 +86,7 @@
     "pH": 9.0,
     "ammonia": 8.8,
     "nitrite": 0,
-    "nitrate": 0
+    "nitrate": 0,
+    "note": "dosed 20g ammonium carboante"
   }
 ]

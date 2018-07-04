@@ -87,7 +87,6 @@ const setUpChart = () => {
 };
 
 
-
 const populateChart = () => {
     chart.data.datasets = [{
         type: 'line',
@@ -148,8 +147,7 @@ const populateChart = () => {
     chart.update();
 };
 
-setUpChart();
-populateChart();
+
 
 
 
