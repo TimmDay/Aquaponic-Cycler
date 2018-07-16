@@ -17,19 +17,48 @@
 
 
     <div>
+        <p id="validation-msg"></p>
         <form>
             <input class="data-input" placeholder="date"/>
             <input class="data-input" placeholder="time"/>
-            <input class="data-input" placeholder="pH"/>
-            <input class="data-input" placeholder="ammonia"/>
-            <input class="data-input" placeholder="nitrite"/>
+
+            <input
+                id="pH"
+                class="data-input"
+                type="text"
+                placeholder="pH"
+                value=""
+                onkeyup="onPhChange(event);"
+                required pattern="[0-9]?[0-9]\.[0-9]"
+            />
+
+            <input
+                    id="amm"
+                    class="data-input"
+                    type="text"
+                    placeholder="ammonia"
+                    value=""
+                    onkeyup="onAmmoniaChange(event);"
+                    required pattern="[0-9]?[0-9]\.[0-9]"
+            />
+
+            <input
+                    id="nite"
+                    class="data-input"
+                    type="text"
+                    placeholder="nitrite"
+                    value=""
+                    onkeyup="onNitriteChange(event);"
+                    required pattern="[0-9]?[0-9]\.[0-9]"
+            />
+
             <input class="data-input" placeholder="nitrate"/>
             <input class="data-input" placeholder="notes"/>
         </form>
         <button>new entry</button>
     </div>
 
-    <div id="example-table"></div>
+    <!--<div id="example-table"></div>-->
 
     <!-- table2 manual version container-->
     <div id="table_container"></div>
@@ -50,6 +79,7 @@
 <script src="src/scripts/global-data.js"></script> <!--must be before the other files that use it-->
 <script src="src/scripts/table2.js"></script>
 <script src="./src/scripts/line-chart.js"></script>
+<script src="./src/scripts/inputs.js"></script>
 
 <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.2/js/tabulator.min.js"></script>-->
 <!--<script src="src/scripts/table.js"></script>-->
