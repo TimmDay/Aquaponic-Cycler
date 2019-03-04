@@ -1,0 +1,41 @@
+.header {
+  background: #222;
+}
+
+.header__content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: $l-size $l-size;
+}
+
+.header__title {
+  color: white;
+  text-decoration: none;
+  h1 {
+    margin: 0;
+  }
+}
+
+.header_tagline {
+  color: #aaa;
+  margin: 0;
+}
+
+.header__link {
+  background: none;
+  border: none;
+  color: #aaa;
+  display: inline-block;
+  font-size: $font-size-large;
+  font-weight: 300;
+  line-height: 1;
+  padding: $s-size;
+  text-decoration: none;
+}
+
+.header__link--container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

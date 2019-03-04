@@ -1,0 +1,40 @@
+.box-layout {
+  align-items: center;
+  background: url('/images/bg.jpg');
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.box-layout__box {
+  background: fade-out(white, .15);
+  border-radius: 3px;
+  padding: $l-size $m-size;
+  text-align: center;
+  width: 35rem;
+}
+
+.box-layout__title {
+  margin: 0 0 $m-size 0;
+  line-height: 1;
+}
+
+.login__btn {
+  background: $blue;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: $font-size-large;
+  font-weight: 300;
+  margin-top: $s-size;
+  padding: $s-size;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.login__btn-bar {
+  display: flex;
+  flex-direction: column;
+}

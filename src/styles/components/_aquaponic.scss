@@ -1,0 +1,120 @@
+.aquaponic {
+    background: #555;
+    margin: 0;
+    text-align: center;
+    padding-top: $s-size;
+    padding-bottom: 10rem;
+    height: 100vh;
+    width: 100vw;
+    @media (min-width: $desktop-breakpoint) {
+        padding-top: $l-size * 2;
+    }
+}
+.aquaponic__flex-container {
+    margin: 0 auto;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.aquaponic__btn-bar {
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    @media (min-width: $desktop-breakpoint) {
+        margin-right: $l-size;
+    }
+}
+.aquaponic__input {
+    background: #555;
+    color: #fff;
+    border: 0;
+    border-bottom: 1px solid #00bfa5; //TODO:
+    text-align: center;
+}
+.aquaponic__input::placeholder {
+    color: #bbb;
+    font-style: italic;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.aquaponic__btn {
+    margin-bottom: $s-size;
+    background: #222;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: $font-size-large;
+    padding: $s-size;
+    width: 100%;
+}
+.aquaponic__btn--ph {
+    background: linear-gradient(-60deg, #4286f4 10%, #222 90%);
+    &.aquaponic__btn-active {
+        background: linear-gradient(-60deg, #4286f4 10%, #fff 90%);
+        color:#000;
+    }
+}
+.aquaponic__btn--amm {
+    background: linear-gradient(-60deg, #2ba85f 10%, #222 90%);
+    &.aquaponic__btn-active {
+        background: linear-gradient(-60deg, #2ba85f 10%, #fff 90%);
+        color: #000;
+    }
+}
+.aquaponic__btn--ite {
+    background: linear-gradient(-60deg, #a564e5 10%, #222 90%);
+    &.aquaponic__btn-active {
+        background: linear-gradient(-60deg, #a564e5 10%, #fff 90%);
+        color:#000;
+    }
+}
+.aquaponic__btn--ate {
+    background: linear-gradient(-60deg, #f23551 10%, #222 90%);
+    &.aquaponic__btn-active {
+        background: linear-gradient(-60deg, #f23551 10%, #fff 90%);
+        color: #000;//: red;
+    }
+}
+
+.aquaponic__error-msg {
+    color: hotpink;
+}
+.aquaponic__form {
+    color: #ccc;
+}
+.aquaponic__form span {
+    color: #00bfa5; //TODO:
+}
+.aquaponic__form p {
+    margin: 0
+}
+
+.aquaponic__x-axis path, .aquaponic__y-axis path, 
+.aquaponic__x-axis line, .aquaponic__y-axis line {
+    stroke: #aaa;
+}
+
+.aquaponic__x-axis text, .aquaponic__y-axis text{
+    fill: #aaa;
+    font-size: 1.4rem;
+}
+
+.aquaponic__tip {
+    background: #333;
+    border-radius: 5px;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+.aquaponic__tip-name {
+    color: orange;
+}
+
+.aquaponic__tip-details {
+    font-weight: 300;
+}
