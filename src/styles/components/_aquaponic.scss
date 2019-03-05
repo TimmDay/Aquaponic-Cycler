@@ -53,30 +53,30 @@
 }
 .aquaponic__btn--ph {
     background: linear-gradient(-60deg, #4286f4 10%, #222 90%);
-    &.aquaponic__btn-active {
+    &.aquaponic__btn-active, &:hover {
         background: linear-gradient(-60deg, #4286f4 10%, #fff 90%);
         color:#000;
     }
 }
 .aquaponic__btn--amm {
     background: linear-gradient(-60deg, #2ba85f 10%, #222 90%);
-    &.aquaponic__btn-active {
+    &.aquaponic__btn-active, &:hover {
         background: linear-gradient(-60deg, #2ba85f 10%, #fff 90%);
         color: #000;
     }
 }
 .aquaponic__btn--ite {
     background: linear-gradient(-60deg, #a564e5 10%, #222 90%);
-    &.aquaponic__btn-active {
+    &.aquaponic__btn-active, &:hover {
         background: linear-gradient(-60deg, #a564e5 10%, #fff 90%);
         color:#000;
     }
 }
 .aquaponic__btn--ate {
     background: linear-gradient(-60deg, #f23551 10%, #222 90%);
-    &.aquaponic__btn-active {
+    &.aquaponic__btn-active, &:hover {
         background: linear-gradient(-60deg, #f23551 10%, #fff 90%);
-        color: #000;//: red;
+        color: #000;
     }
 }
 
@@ -85,9 +85,6 @@
 }
 .aquaponic__form {
     color: #ccc;
-}
-.aquaponic__form span {
-    color: #00bfa5; //TODO:
 }
 .aquaponic__form p {
     margin: 0

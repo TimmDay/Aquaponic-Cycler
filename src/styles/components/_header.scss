@@ -3,10 +3,16 @@
 }
 
 .header__content {
-  align-items: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: $l-size $l-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .header__title {

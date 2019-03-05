@@ -9,8 +9,24 @@ class Aquaponic extends React.Component {
     this.state = {
       selected: 'view all',
       input: '',
+      colors: ['#4286f4', '#2ba85f', '#a564e5', '#f23551'],
       error: ''
     };
+  }
+
+  chooseColor = (filter) => {
+    switch (filter) {
+      case 'pH':
+        return this.state.colors[0];
+      case 'ammonia':
+        return this.state.colors[1];
+      case 'nitrite':
+        return this.state.colors[2];
+      case 'nitrate':
+        return this.state.colors[3];
+      default:
+        return;
+    }
   }
 
   handleOnClick = evt => {
@@ -124,6 +140,8 @@ class Aquaponic extends React.Component {
   };
 
   render() {
+    console.log(this.chooseColor(this.state.selected));
+    
     return (
       <div className="aquaponic">
         <section className="content-container aquaponic__flex-container">
@@ -153,17 +171,18 @@ class Aquaponic extends React.Component {
                 autoComplete="off"
               >
                 {this.state.selected !== 'view all' && (
-                  <p> How much <span>{this.state.selected}</span> today?</p>
+                  <p> How much <span style={{color: this.chooseColor(this.state.selected)}}>{this.state.selected}</span> today?</p>
                 )}
 
                 {this.state.selected !== 'view all' && (
                   <input
                     autoFocus
                     className="aquaponic__input"
-                    type="text"
                     id="pH"
-                    value={this.state.input}
                     onChange={this.handleOnInputChange}
+                    style={{'border-bottom': '1px solid ' + this.chooseColor(this.state.selected)}}
+                    type="text"
+                    value={this.state.input}
                   />
                 )}
                 {this.state.error && (
@@ -172,7 +191,7 @@ class Aquaponic extends React.Component {
               </form>
             </div>
           </div>
-          {console.log(window.innerWidth)          }
+          {console.log(window.innerWidth)}
           {window.innerWidth < 850 ? <D3LineGraph windowWidth={window.innerWidth }/>
           : <D3LineGraph />
           }
@@ -182,6 +201,7 @@ class Aquaponic extends React.Component {
   }
 }
 
+//TODO: check the D#LineGraph conditional render for smartphones
 const mapDispatchToProps = dispatch => ({
   setSelectedFilter: wqm => dispatch(setSelectedFilter(wqm)),
   startAddEntry: entry => dispatch(startAddEntry(entry)),
