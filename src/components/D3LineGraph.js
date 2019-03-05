@@ -153,12 +153,15 @@ class D3LineGraph extends React.Component {
       .line()
       .x(d => x(new Date(d.date)))
       .y(d => y(d.value))
-      .curve(d3.curveCatmullRom.alpha(0.9));
+      .curve(d3.curveMonotoneX);
+      //.curve(d3.curveCardinal.tension(0.7));
+      // .curve(d3.curveCatmullRom.alpha(0.9));
 
     // 1. scale domains. set up axes.
 
     // set scale domains
-    x.domain(d3.extent(data, d => new Date(d.date))); //extent returns [min, max]. Dates stored as strings, so bring them back to timestamps for comparison
+    x.domain(d3.extent(this.props.dateExtent, d => new Date(d))); 
+    // x.domain(d3.extent(data, d => new Date(d.date))); //extent returns [min, max]. Dates stored as strings, so bring them back to timestamps for comparison
     y.domain([-0.1, d3.max(data, d => parseFloat(d.value)) + 0.2]);
 
     //update circles and lines, for the 1 of 4 lines that is selected
@@ -167,7 +170,7 @@ class D3LineGraph extends React.Component {
         .data([data])
         .attr('fill', 'none')
         .attr('stroke', this.state.colors[0])
-        .attr('stroke-width', 3)
+        .attr('stroke-width', 2)
         .attr('d', line)
         .style('opacity', 1);
 
@@ -197,7 +200,7 @@ class D3LineGraph extends React.Component {
         .data([data])
         .attr('fill', 'none')
         .attr('stroke', this.state.colors[1])
-        .attr('stroke-width', 3)
+        .attr('stroke-width', 2)
         .attr('d', line)
         .style('opacity', 1);
 
@@ -227,7 +230,7 @@ class D3LineGraph extends React.Component {
         .data([data])
         .attr('fill', 'none')
         .attr('stroke', this.state.colors[2])
-        .attr('stroke-width', 3)
+        .attr('stroke-width', 2)
         .attr('d', line)
         .style('opacity', 1);
 
@@ -257,7 +260,7 @@ class D3LineGraph extends React.Component {
         .data([data])
         .attr('fill', 'none')
         .attr('stroke', this.state.colors[3])
-        .attr('stroke-width', 3)
+        .attr('stroke-width', 2)
         .attr('d', line)
         .style('opacity', 1);
 
@@ -343,7 +346,8 @@ class D3LineGraph extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedFilter: state.aquaponicReducer.selectedFilter,
-    dbReturn: state.aquaponicReducer.dbReturn
+    dbReturn: state.aquaponicReducer.dbReturn,
+    dateExtent: state.aquaponicReducer.dateExtent
   };
 };
 

@@ -12,14 +12,7 @@ export const Header = ({ startLogout }) => (
           <p className="header_tagline">Tracking your bacterial food producers</p>
         </Link>
 
-        <div className='header__link--container'>
-          <Link className="header__link" to="/aquaponic">cycler</Link>
-          <a className="header__link" href='#'>CV</a>
-          <a className="header__link" href='www.timmday.com'>timmday.com</a>
-          <a className="header__link" href='#'>github</a>
-        </div>
-
-        <button className="header__link" onClick={startLogout}>Logout</button> //TODO: RESPONSIVE
+        <button className="header__link" onClick={startLogout}>Logout</button>
       </div>
     </div>
   </header>

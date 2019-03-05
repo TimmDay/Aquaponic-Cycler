@@ -1,6 +1,7 @@
 const defaultState = {
   selectedFilter: 'view all', //default
-  dbReturn: []
+  dbReturn: [],
+  dateExtent: []
 };
 
 const aquaponicReducer = (state = defaultState, action) => {
@@ -12,9 +13,22 @@ const aquaponicReducer = (state = defaultState, action) => {
       };
 
     case 'UPDATE_DB_RETURN':
+      //store the min and max date in all of data
+      
+      //1. convert date strings to date objects to timestamps to compare them as numbers
+      let dateArr = [];
+
+      action.data.forEach(item => {
+        const timestamp = new Date(item.date).getTime();
+        if (timestamp !== NaN) dateArr.push(timestamp);
+      })
+      const maxDate = new Date(Math.max(...dateArr)).toString();
+      const minDate = new Date(Math.min(...dateArr)).toString();
+      
       return {
         ...state,
-        dbReturn: action.data
+        dbReturn: action.data,
+        dateExtent: [minDate, maxDate]
       };
 
     case 'ADD_NEW_ENTRY':

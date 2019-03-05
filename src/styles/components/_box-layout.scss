@@ -1,6 +1,9 @@
 .box-layout {
   align-items: center;
-  background: url('/images/bg.jpg');
+  background: url('/images/bg.gif') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   display: flex;
   height: 100vh;
@@ -17,12 +20,13 @@
 }
 
 .box-layout__title {
+  color: $blue-primary;
   margin: 0 0 $m-size 0;
   line-height: 1;
 }
 
 .login__btn {
-  background: $blue;
+  background: $blue-primary;
   border: none;
   border-radius: 3px;
   color: white;
