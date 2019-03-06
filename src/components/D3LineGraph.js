@@ -335,7 +335,24 @@ class D3LineGraph extends React.Component {
           .duration(300)
           .attr('r', 4);
         dottedLines.style('opacity', 0);
-      });
+      })
+      .on('click', (d) => {
+        console.log(d);
+        const nodeData = {
+          id: d.id,
+          date: d.date,
+          name: d.name,
+          value: d.value
+        };
+        console.log(nodeData);
+        
+        
+        // get existing data (with id)
+        // send to modal (prefilled)
+        // user can change existing data in modal
+        // edit data sent to db
+        // use id to find in db
+      })
   }
 
   render() {
