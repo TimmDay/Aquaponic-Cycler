@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { SingleDatePicker } from 'react-dates'; // requires moment
+import moment from 'moment';
 import Modal from 'react-modal';
 import { handleToggleModalEditCycle } from './../actions/ux';
+import { startEditEntry } from './../actions/aquaponic';
 
 class ModalEditCyclingDataPoint extends React.Component {
 
@@ -15,19 +18,11 @@ class ModalEditCyclingDataPoint extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.isModalOpenEditCycle && !prevProps.isModalOpenEditCycle) {
-      console.log('modal update');
-      console.log(prevProps);
-      console.log(this.props);
-      
-      
+    if (this.props.isModalOpenEditCycle && !prevProps.isModalOpenEditCycle) {      
       this.handlePreFillModalInputsOnOpen();
     }
   }
   handlePreFillModalInputsOnOpen = () => {
-    console.log(this.props.selectedNode.name);
-    console.log(this.props);
-    
     this.setState(() => ({
       name: this.props.selectedNode.name === null ? '' : this.props.selectedNode.name, 
       date: this.props.selectedNode.date === null ? '' : this.props.selectedNode.date, 
@@ -36,7 +31,10 @@ class ModalEditCyclingDataPoint extends React.Component {
     }));
   };
 
-  handleOnClickReset = () => this.setState({ name: '', date: '', value: '' });
+  handleOnClickReset = () => {
+    this.setState({ name: '', date: '', value: '' });
+    this.handlePreFillModalInputsOnOpen();
+  }
 
   handleOnRequestClose = () => {
       this.handleOnClickReset();
@@ -56,8 +54,48 @@ class ModalEditCyclingDataPoint extends React.Component {
   };
 
   onSubmitChanges = () => {
-    console.log('TODO: submit changes');
+    const obj = {
+      id: this.props.selectedNode.id,
+      name: this.state.name,
+      value: this.state.value,
+      date: (typeof this.state.date === 'string') ? this.state.date : new Date(this.state.date).toString() //make sure that string
+    };
+    this.props.startEditEntry(obj);
+    this.props.handleToggleModalEditCycle();
   }
+
+  stampToMoment = (dateString) => {
+    if (dateString) {
+      console.log(new Date(dateString).getTime());
+      const timeStampFromString = new Date(dateString).getTime();
+      console.log(moment(timeStampFromString));
+      
+      return moment(timeStampFromString);
+    }
+  }
+  momentToStamp = (mom) => {
+    if (mom) {
+      console.log(mom.valueOf());
+      const newTimeStamp = mom.valueOf();
+      return new Date(newTimeStamp)
+    }
+  }
+    
+  
+  onDateChange = (pickerGenMoment) => {
+    if (pickerGenMoment) { //prevents user clearing the value
+        // because if date is cleared, this func gets called with nothing
+        // (we don't want to update this part of state to nothing)
+        const dateString = this.momentToStamp(pickerGenMoment);
+        console.log(pickerGenMoment);
+        console.log(dateString);
+
+        this.setState(() => ({ date: dateString }));
+    }
+};
+  onFocusChange = ({ focused }) => {
+    this.setState(()=> ({ calendarFocused: focused }));
+  };
 
   render () {
     return (
@@ -70,36 +108,39 @@ class ModalEditCyclingDataPoint extends React.Component {
           ariaHideApp={false}
       >
           <form
-            className="form__within-modal"
+            className="modal__form"
             onSubmit={this.onSubmit}
           >
             {this.state.error && <p className="form__error">{this.state.error}</p>}
 
-            <div>
-                <label>Name: </label>
-                <input
-                    type="text"
-                    placeholder={this.props.selectedNode.name}
-                    value={this.state.name}
-                    onChange={this.handleOnNameChange}
-                    autoFocus
-                />
-            </div>
+            <select
+            className="modal__styled-select"
+              value={this.state.name}
+              onChange={this.handleOnNameChange}
+            >
+              <option>pH</option>
+              <option>ammonia</option>
+              <option>nitrite</option>
+              <option>nitrate</option>
+            </select>
 
-            <div>
-                <label>Date: </label>
-                <p>TODO: react date picker</p>
-            </div>
+            <SingleDatePicker
+              date={this.stampToMoment(this.state.date)}
+              onDateChange={this.onDateChange}
+              focused={this.state.calendarFocused}
+              onFocusChange={this.onFocusChange}
+              numberOfMonths={1}
+              isOutsideRange={() => false} //every day available, past and future
+            />
 
-            <div>
-                <label>Value: </label>
-                <input
-                    type="text"
-                    placeholder={this.props.selectedNode.value}
-                    value={this.state.value}
-                    onChange={this.handleOnValueChange}
-                />
-            </div>
+            
+            <input
+              className="aquaponic__input"
+              type="text"
+              placeholder={this.props.selectedNode.value}
+              value={this.state.value}
+              onChange={this.handleOnValueChange}
+            />
         </form>
 
         <div className="form__btn-bar">
@@ -134,7 +175,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleToggleModalEditCycle: () => dispatch(handleToggleModalEditCycle())
+  handleToggleModalEditCycle: () => dispatch(handleToggleModalEditCycle()),
+  startEditEntry: (obj) => dispatch(startEditEntry(obj))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalEditCyclingDataPoint);

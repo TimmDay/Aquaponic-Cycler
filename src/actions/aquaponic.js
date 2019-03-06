@@ -6,6 +6,7 @@ export const setSelectedFilter = wqm => ({
   wqm
 });
 
+//when node clicked
 export const updateSelectedNodeData = (obj={}) => {
   const {name='', value='', date='', id=''} = obj
   return {
@@ -22,8 +23,7 @@ export const startUpdateDataFromDB = (isDemo) => {
     .collection('users')
     .doc(uid)
     .collection('aquaponic')
-    .onSnapshot(response => {
-      
+    .onSnapshot(response => { 
       let data = [];
       response.docChanges().forEach(change => {  
         const doc = { ...change.doc.data(), id: change.doc.id };
@@ -63,15 +63,29 @@ export const startAddEntry = (obj) => {
         .doc(uid)
         .collection('aquaponic')
         .add(obj)
-
         .then(() => {
           dispatch(startUpdateDataFromDB());
         });
     }
   }
 };
-
 export const addEntry = (entry) => ({
   type: 'ADD_NEW_ENTRY',
   entry
 });
+
+export const startEditEntry = (obj) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    if (obj.id) {
+      db.collection('users')
+        .doc(uid)
+        .collection('aquaponic')
+        .doc(obj.id)
+        .update({name: obj.name, date: obj.date, value: obj.value})
+        .then(() => {
+          dispatch(startUpdateDataFromDB());
+        });
+    }
+  }
+};

@@ -1,0 +1,43 @@
+.ReactModalPortal > div {
+  opacity: 0; //invisible on click, then transition to visible
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  transition: opacity 200ms ease-in-out;
+  display: flex; //enable flexbox
+  justify-content: center; //horizontal alignment
+  align-items: center; // vertical alignment
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal {
+  background: $grey;
+  border: 1px solid black;
+  border-radius: 1rem;
+  color: $teal;
+  max-width: 52rem;
+  outline: 0;
+  padding: $l-size;
+  text-align: center;
+}
+
+.modal__styled-select {
+  background-color: $teal;
+  border: 1px solid darken($teal, 20%);
+  border-radius: 20px;
+  height: $l-size;
+  overflow: hidden;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+}

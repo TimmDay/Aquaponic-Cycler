@@ -27,10 +27,10 @@
     }
 }
 .aquaponic__input {
-    background: #555;
+    background: $grey;
     color: #fff;
     border: 0;
-    border-bottom: 1px solid #00bfa5; //TODO:
+    border-bottom: 1px solid $teal;
     text-align: center;
 }
 .aquaponic__input::placeholder {

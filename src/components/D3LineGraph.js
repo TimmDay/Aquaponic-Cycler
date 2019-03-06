@@ -338,24 +338,9 @@ class D3LineGraph extends React.Component {
         dottedLines.style('opacity', 0);
       })
       .on('click', (d) => {
-        console.log(d);
-        const nodeData = {
-          id: d.id,
-          date: d.date,
-          name: d.name,
-          value: d.value
-        };
-        console.log(nodeData);
+        const nodeData = { id: d.id, date: d.date, name: d.name, value: d.value };
         this.props.updateSelectedNodeData(nodeData);
         this.props.handleToggleModalEditCycle();
-        
-        
-        
-        // get existing data (with id)
-        // send to modal (prefilled)
-        // user can change existing data in modal
-        // edit data sent to db
-        // use id to find in db
       })
   }
 
