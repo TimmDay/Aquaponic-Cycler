@@ -3,19 +3,20 @@
 
 
 
-:sparkles: Please check [out](https://aquaponic-cycler.herokuapp.com) the working version :sparkles:
+Please [check out](https://aquaponic-cycler.herokuapp.com) the working version :sparkles:
 
 
 
-If you are cycling an Aquaponic System, make an account and start tracking the growth of your food producing bacterial colonies right away. You fish will thank you (for not prematurely killing them due to negligence).
+If you are cycling an Aquaponic System, you can make an account and start tracking the growth of your food producing bacterial colonies. You fish will thank you (for not prematurely killing them due to negligence).
 
-For :question:, :beetle: or feature requests I'm at @FishPlantFish on twitter
+For :question:, :beetle: or feature requests I'm at @FishPlantFish on twitter. The next feature on the list is to include system supplements records, so that you can visualise when certain supplements were added and what impact they had on system health.
 
 
 
-PS: You might have found your way here looking for a **D3 v5 multi-line-graph** :chart_with_upwards_trend:. I was unable to find anything else like it online, so feel free to copy pasta :spaghetti: mine and adapt for your needs.
+PS: You might have found your way here looking for a **D3 v5 multi-line-graph** :chart_with_upwards_trend:. I was unable to find anything like it online, so feel free to copy pasta mine and adapt for your needs. :spaghetti:
 
 You can find it in src/components/D3LineGraph.js. Note the default props at the base of the file, you can pass in your own if you like.
+
 
 :fish: :seedling: :tropical_fish:
 
