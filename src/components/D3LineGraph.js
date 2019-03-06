@@ -4,7 +4,8 @@ import moment from 'moment';
 import * as d3 from 'd3';
 import { select } from 'd3-selection';
 import tip from 'd3-tip';
-import { startUpdateDataFromDB } from '../actions/aquaponic';
+import { startUpdateDataFromDB, updateSelectedNodeData } from '../actions/aquaponic';
+import { handleToggleModalEditCycle } from './../actions/ux';
 
 class D3LineGraph extends React.Component {
   constructor(props) {
@@ -345,6 +346,9 @@ class D3LineGraph extends React.Component {
           value: d.value
         };
         console.log(nodeData);
+        this.props.updateSelectedNodeData(nodeData);
+        this.props.handleToggleModalEditCycle();
+        
         
         
         // get existing data (with id)
@@ -369,7 +373,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  startUpdateDataFromDB: () => dispatch(startUpdateDataFromDB())
+  startUpdateDataFromDB: () => dispatch(startUpdateDataFromDB()),
+  handleToggleModalEditCycle: () => dispatch(handleToggleModalEditCycle()),
+  updateSelectedNodeData: (obj) => dispatch(updateSelectedNodeData(obj))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(D3LineGraph);

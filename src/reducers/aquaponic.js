@@ -1,7 +1,8 @@
 const defaultState = {
   selectedFilter: 'view all', //default
   dbReturn: [],
-  dateExtent: []
+  dateExtent: [],
+  selectedNode: {}
 };
 
 const aquaponicReducer = (state = defaultState, action) => {
@@ -14,7 +15,6 @@ const aquaponicReducer = (state = defaultState, action) => {
 
     case 'UPDATE_DB_RETURN':
       //store the min and max date in all of data
-      
       //1. convert date strings to date objects to timestamps to compare them as numbers
       let dateArr = [];
 
@@ -36,6 +36,12 @@ const aquaponicReducer = (state = defaultState, action) => {
         ...state,
         dbReturn: [...state.dbReturn, action.entry]
       };
+
+    case 'UPDATE_SELECTED_NODE_DATA':
+      return {
+        ...state,
+        selectedNode: action.nodeData
+      }
 
     default:
       return state;

@@ -6,6 +6,14 @@ export const setSelectedFilter = wqm => ({
   wqm
 });
 
+export const updateSelectedNodeData = (obj={}) => {
+  const {name='', value='', date='', id=''} = obj
+  return {
+    type: 'UPDATE_SELECTED_NODE_DATA',
+    nodeData: obj
+  }
+};
+
 // DATA LISTENER. realtime firestore
 export const startUpdateDataFromDB = (isDemo) => {
   return (dispatch, getState) => {

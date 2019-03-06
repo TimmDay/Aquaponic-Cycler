@@ -1,6 +1,8 @@
 import React from 'react';
 import D3LineGraph from './D3LineGraph';
 import BtnsDataEntry from './BtnsDataEntry';
+import ModalEditCyclingDataPoint from './ModalEditCyclingDataPoint';
+
 
 const Aquaponic = () => (
   <div className="aquaponic">
@@ -8,6 +10,7 @@ const Aquaponic = () => (
       < BtnsDataEntry />
       {window.innerWidth < 850 ? <D3LineGraph windowWidth={window.innerWidth }/> : <D3LineGraph />}
     </section>
+    < ModalEditCyclingDataPoint />
   </div>
 );
 

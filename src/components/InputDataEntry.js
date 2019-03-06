@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {  startAddEntry } from '../actions/aquaponic';
+import { startAddEntry } from '../actions/aquaponic';
 
 class InputDataEntry extends React.Component {
   constructor(props) {
