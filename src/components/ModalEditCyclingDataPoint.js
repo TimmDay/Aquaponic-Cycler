@@ -111,8 +111,19 @@ class ModalEditCyclingDataPoint extends React.Component {
             className="modal__form"
             onSubmit={this.onSubmit}
           >
+            <h2 className="modal__form--item">Edit Measurement</h2>
             {this.state.error && <p className="form__error">{this.state.error}</p>}
 
+            <SingleDatePicker
+              date={this.stampToMoment(this.state.date)}
+              onDateChange={this.onDateChange}
+              focused={this.state.calendarFocused}
+              onFocusChange={this.onFocusChange}
+              numberOfMonths={1}
+              isOutsideRange={() => false} //every day available, past and future
+              displayFormat="DD MMM YYYY"
+            />
+          
             <select
             className="modal__styled-select"
               value={this.state.name}
@@ -124,16 +135,6 @@ class ModalEditCyclingDataPoint extends React.Component {
               <option>nitrate</option>
             </select>
 
-            <SingleDatePicker
-              date={this.stampToMoment(this.state.date)}
-              onDateChange={this.onDateChange}
-              focused={this.state.calendarFocused}
-              onFocusChange={this.onFocusChange}
-              numberOfMonths={1}
-              isOutsideRange={() => false} //every day available, past and future
-            />
-
-            
             <input
               className="aquaponic__input"
               type="text"
@@ -141,23 +142,24 @@ class ModalEditCyclingDataPoint extends React.Component {
               value={this.state.value}
               onChange={this.handleOnValueChange}
             />
+
         </form>
 
-        <div className="form__btn-bar">
+        <div className="modal__btn-bar">
             <button
-                className="form__btn"
+                className="modal__btn"
                 onClick={this.handleOnRequestClose}
             >close
             </button>
 
             <button
-                className="form__btn"
+                className="modal__btn"
                 onClick={this.handleOnClickReset}
             >reset
             </button>
 
             <button
-                className="form__btn"
+                className="modal__btn"
                 onClick={this.onSubmitChanges}
             >submit changes
             </button>

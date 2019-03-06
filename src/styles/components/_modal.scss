@@ -29,15 +29,38 @@
 }
 
 .modal__styled-select {
-  background-color: $teal;
+  background-color: lighten($teal, 20%);;
   border: 1px solid darken($teal, 20%);
   border-radius: 20px;
   height: $l-size;
   overflow: hidden;
+  text-align-last:center;
+  text-align: center;
 }
 
 .modal__form {
   display: flex;
   flex-direction: column;
-  align-items: space-between;
+}
+
+.modal__form > * {
+  margin-bottom: $m-size;
+}
+
+.modal__form--item {
+  color: lighten($teal, 20%);
+  margin: 0;
+  margin-bottom: $m-size;
+}
+
+.modal__btn-bar > * {
+  margin: 0 $s-size/2 0 $s-size/2;
+}
+
+.modal__btn {
+  color: #000;
+  background: lighten($teal, 20%);;
+  border: none;
+  border-radius: 8px;
+  padding: $s-size;
 }
