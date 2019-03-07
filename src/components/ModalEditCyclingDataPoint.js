@@ -13,7 +13,8 @@ class ModalEditCyclingDataPoint extends React.Component {
       this.state = {
         name: '', 
         date: '', 
-        value: ''
+        value: '',
+        colors: ['#4286f4', '#2ba85f', '#a564e5', '#f23551'],
       }
   }
 
@@ -80,6 +81,20 @@ class ModalEditCyclingDataPoint extends React.Component {
       return new Date(newTimeStamp)
     }
   }
+  chooseColor = (filter) => {
+    switch (filter) {
+      case 'pH':
+        return this.state.colors[0];
+      case 'ammonia':
+        return this.state.colors[1];
+      case 'nitrite':
+        return this.state.colors[2];
+      case 'nitrate':
+        return this.state.colors[3];
+      default:
+        return;
+    }
+  }
     
   
   onDateChange = (pickerGenMoment) => {
@@ -111,8 +126,23 @@ class ModalEditCyclingDataPoint extends React.Component {
             className="modal__form"
             onSubmit={this.onSubmit}
           >
-            <h2 className="modal__form--item">Edit Measurement</h2>
+            <h2 
+              className="modal__form--item"
+              style={{ color: '#fff'}}//</form>this.chooseColor(this.props.selectedNode.name)}}
+            >Edit Measurement</h2>
             {this.state.error && <p className="form__error">{this.state.error}</p>}
+
+            <select
+              className="modal__styled-select"
+              style={{ backgroundColor: this.chooseColor(this.props.selectedNode.name)}}
+              value={this.state.name}
+              onChange={this.handleOnNameChange}
+            >
+              <option>pH</option>
+              <option>ammonia</option>
+              <option>nitrite</option>
+              <option>nitrate</option>
+            </select>
 
             <SingleDatePicker
               date={this.stampToMoment(this.state.date)}
@@ -123,20 +153,10 @@ class ModalEditCyclingDataPoint extends React.Component {
               isOutsideRange={() => false} //every day available, past and future
               displayFormat="DD MMM YYYY"
             />
-          
-            <select
-            className="modal__styled-select"
-              value={this.state.name}
-              onChange={this.handleOnNameChange}
-            >
-              <option>pH</option>
-              <option>ammonia</option>
-              <option>nitrite</option>
-              <option>nitrate</option>
-            </select>
 
             <input
               className="aquaponic__input"
+              style={{borderBottom: `${this.chooseColor(this.props.selectedNode.name)} 1px solid`}}
               type="text"
               placeholder={this.props.selectedNode.value}
               value={this.state.value}
@@ -149,18 +169,21 @@ class ModalEditCyclingDataPoint extends React.Component {
             <button
                 className="modal__btn"
                 onClick={this.handleOnRequestClose}
+                style={{backgroundColor: this.chooseColor(this.props.selectedNode.name)}}
             >close
             </button>
 
             <button
                 className="modal__btn"
                 onClick={this.handleOnClickReset}
+                style={{backgroundColor: this.chooseColor(this.props.selectedNode.name)}}
             >reset
             </button>
 
             <button
                 className="modal__btn"
                 onClick={this.onSubmitChanges}
+                style={{backgroundColor: this.chooseColor(this.props.selectedNode.name)}}
             >submit changes
             </button>
         </div>
@@ -172,7 +195,8 @@ class ModalEditCyclingDataPoint extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isModalOpenEditCycle: state.uxReducer.isModalOpenEditCycle,
-    selectedNode: state.aquaponicReducer.selectedNode
+    selectedNode: state.aquaponicReducer.selectedNode,
+    selectedFilter: state.aquaponicReducer.selectedFilter //for dynamic color picking
   }
 };
 

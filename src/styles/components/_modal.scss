@@ -29,9 +29,11 @@
 }
 
 .modal__styled-select {
-  background-color: lighten($teal, 20%);;
-  border: 1px solid darken($teal, 20%);
+  // background-color: lighten($teal, 20%);;
+  // border: 1px solid darken($teal, 20%);
+  border: none;
   border-radius: 20px;
+  color: #fff;
   height: $l-size;
   overflow: hidden;
   text-align-last:center;
@@ -48,7 +50,7 @@
 }
 
 .modal__form--item {
-  color: lighten($teal, 20%);
+  // color: lighten($teal, 20%);
   margin: 0;
   margin-bottom: $m-size;
 }
@@ -58,8 +60,8 @@
 }
 
 .modal__btn {
-  color: #000;
-  background: lighten($teal, 20%);;
+  color: #fff;
+  // background: lighten($teal, 20%);;
   border: none;
   border-radius: 8px;
   padding: $s-size;

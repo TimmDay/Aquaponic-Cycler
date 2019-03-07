@@ -82,7 +82,7 @@ class InputDataEntry extends React.Component {
             <p>
               {' '}
               How much{' '}
-              <span style={{ color: this.chooseColor(this.props.selected) }}>
+              <span style={{ color: this.chooseColor(this.props.selected)}}>
                 {this.props.selected}
               </span>{' '}
               today?
