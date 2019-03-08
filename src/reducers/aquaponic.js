@@ -1,6 +1,6 @@
 const defaultState = {
   selectedFilter: 'view all', //default
-  dbReturn: [],
+  cyclingData: [],
   dateExtent: [],
   selectedNode: {}
 };
@@ -27,14 +27,20 @@ const aquaponicReducer = (state = defaultState, action) => {
       
       return {
         ...state,
-        dbReturn: action.data,
+        cyclingData: action.data,
         dateExtent: [minDate, maxDate]
       };
 
     case 'ADD_NEW_ENTRY':
       return {
         ...state,
-        dbReturn: [...state.dbReturn, action.entry]
+        cyclingData: [...state.cyclingData, action.entry]
+      };
+
+      case 'EDIT_NEW_ENTRY':
+      return {
+        ...state,
+        cyclingData: [...state.cyclingData, action.entry]
       };
 
     case 'UPDATE_SELECTED_NODE_DATA':

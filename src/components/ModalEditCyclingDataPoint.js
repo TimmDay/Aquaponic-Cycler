@@ -195,8 +195,7 @@ class ModalEditCyclingDataPoint extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isModalOpenEditCycle: state.uxReducer.isModalOpenEditCycle,
-    selectedNode: state.aquaponicReducer.selectedNode,
-    selectedFilter: state.aquaponicReducer.selectedFilter //for dynamic color picking
+    selectedNode: state.aquaponicReducer.selectedNode
   }
 };
 

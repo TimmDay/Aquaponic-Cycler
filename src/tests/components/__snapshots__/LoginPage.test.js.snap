@@ -10,16 +10,25 @@ exports[`should correctly render LoginPage 1`] = `
     <h1
       className="box-layout__title"
     >
-      Boilerplate
+      Aquaponic Cycling
     </h1>
     <p>
-      Tag line for app.
+      Stabilising Food Producing Ecosystems
     </p>
-    <button
-      className="button"
+    <div
+      className="login__btn-bar"
     >
-      Login with Google
-    </button>
+      <button
+        className="login__btn"
+      >
+        Login with Google
+      </button>
+      <button
+        className="login__btn"
+      >
+        View DEMO
+      </button>
+    </div>
   </div>
 </div>
 `;

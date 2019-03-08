@@ -34,7 +34,6 @@ class InputDataEntry extends React.Component {
     if (this.props.selected === 'pH') { 
       const regex = /^(1[0-3](\.\d{0,1})?)$|^\d?(\.\d{0,1})?$|^14$/; // 1 -> 14 with opt .0
       if (!value || value.match(regex)) {
-          console.log(`ph: ${value}`);
           this.setState(() => ({ input: value, error: '' }));
         } else {
           this.setState(() => ({ error: `${this.props.selected} range is 1 -> 14` }));
@@ -43,7 +42,6 @@ class InputDataEntry extends React.Component {
     } else if (this.props.selected === 'nitrate') { //0 -> 200 with opt .0
       const regex = /^1?\d?\d?(\.\d{0,1})?$|^200$/;
       if (!value || value.match(regex)) {
-        console.log(`nitrate: ${value}`);
         this.setState(() => ({ input: value, error: '' }));
       } else {
         this.setState(() => ({ error: 'nitrate should be in the range 0 -> 120 ppm' }));
@@ -52,7 +50,6 @@ class InputDataEntry extends React.Component {
     } else {
       const regex = /^10(\.0?)?$|^\d(\.\d{0,2})?$/; //ammonia or nitrite, 0 -> 10, with opt .00
       if (!value || value.match(regex)) {
-        console.log(`amm/nitrite: ${value}`);
         this.setState(() => ({ input: value, error: '' }));
       } else {
         this.setState(() => ({ error: `${this.props.selected} should be in the range 0 -> 10 ppm, with up to 2 decimal places` }));

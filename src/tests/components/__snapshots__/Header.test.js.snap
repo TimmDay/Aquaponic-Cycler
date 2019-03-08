@@ -13,14 +13,19 @@ exports[`should render Header correctly 1`] = `
       <Link
         className="header__title"
         replace={false}
-        to="/dashboard"
+        to="/aquaponic"
       >
         <h1>
-          Boilerplate
+          Aquaponic Cycler
         </h1>
+        <p
+          className="header_tagline"
+        >
+          Tracking your bacterial food producers
+        </p>
       </Link>
       <button
-        className="button button--link"
+        className="header__link"
         onClick={[Function]}
       >
         Logout

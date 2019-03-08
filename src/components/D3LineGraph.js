@@ -4,7 +4,7 @@ import moment from 'moment';
 import * as d3 from 'd3';
 import { select } from 'd3-selection';
 import tip from 'd3-tip';
-import { startUpdateDataFromDB, updateSelectedNodeData } from '../actions/aquaponic';
+import { startSetCycleData, updateSelectedNodeData } from '../actions/aquaponic';
 import { handleToggleModalEditCycle } from './../actions/ux';
 
 class D3LineGraph extends React.Component {
@@ -24,7 +24,7 @@ class D3LineGraph extends React.Component {
     };
   }
   // realtime firestore database
-  listenToData = () => this.props.startUpdateDataFromDB(); 
+  listenToData = () => this.props.startSetCycleData(); 
 
   componentDidMount() {
     this.createGraph();
@@ -33,16 +33,16 @@ class D3LineGraph extends React.Component {
   componentDidUpdate() {
     // filter data into the 4 data streams, sort by date
     const dataArr = [
-      this.props.dbReturn
+      this.props.cyclingData
         .filter(d => d.name === 'pH')
         .sort((a, b) => new Date(a.date) - new Date(b.date)),
-      this.props.dbReturn
+      this.props.cyclingData
         .filter(d => d.name === 'ammonia')
         .sort((a, b) => new Date(a.date) - new Date(b.date)),
-      this.props.dbReturn
+      this.props.cyclingData
         .filter(d => d.name === 'nitrite')
         .sort((a, b) => new Date(a.date) - new Date(b.date)),
-      this.props.dbReturn
+      this.props.cyclingData
         .filter(d => d.name === 'nitrate')
         .sort((a, b) => new Date(a.date) - new Date(b.date))
     ];
@@ -352,13 +352,13 @@ class D3LineGraph extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedFilter: state.aquaponicReducer.selectedFilter,
-    dbReturn: state.aquaponicReducer.dbReturn,
+    cyclingData: state.aquaponicReducer.cyclingData,
     dateExtent: state.aquaponicReducer.dateExtent
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  startUpdateDataFromDB: () => dispatch(startUpdateDataFromDB()),
+  startSetCycleData: () => dispatch(startSetCycleData()),
   handleToggleModalEditCycle: () => dispatch(handleToggleModalEditCycle()),
   updateSelectedNodeData: (obj) => dispatch(updateSelectedNodeData(obj))
 });
